@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  scheme-bot:
+  tg-bot:
     build: .
     container_name: tg_bot
     restart: always
