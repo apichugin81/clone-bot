@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  scheme-bot:
+    build: .
+    container_name: scheme_bot
+    restart: always
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python scheme_bot.py
