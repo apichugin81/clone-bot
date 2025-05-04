@@ -7,15 +7,19 @@ on:
         description: 'Branch to deploy'
         required: true
         default: 'main'
+      commit:
+        description: 'Commit SHA to deploy (leave empty to use branch HEAD)'
+        required: false
+        default: ''
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout selected branch
+      - name: Checkout selected commit or branch
         uses: actions/checkout@v3
         with:
-          ref: ${{ github.event.inputs.branch }}
+          ref: ${{ github.event.inputs.commit != '' && github.event.inputs.commit || github.event.inputs.branch }}
 
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.9.0
